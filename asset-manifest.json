@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/telebot-client/static/css/main.da15e95a.css",
+    "main.js": "/telebot-client/static/js/main.816b6d61.js",
+    "static/js/453.993cb17e.chunk.js": "/telebot-client/static/js/453.993cb17e.chunk.js",
+    "index.html": "/telebot-client/index.html",
+    "main.da15e95a.css.map": "/telebot-client/static/css/main.da15e95a.css.map",
+    "main.816b6d61.js.map": "/telebot-client/static/js/main.816b6d61.js.map",
+    "453.993cb17e.chunk.js.map": "/telebot-client/static/js/453.993cb17e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da15e95a.css",
+    "static/js/main.816b6d61.js"
+  ]
+}
