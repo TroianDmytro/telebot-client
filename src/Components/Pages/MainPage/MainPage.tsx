@@ -6,6 +6,7 @@ import InputGroup from 'react-bootstrap/esm/InputGroup';
 import Form from 'react-bootstrap/esm/Form';
 import { Button } from 'react-bootstrap';
 import TablePage from '../TablePage/TablePage';
+import "./MainPage.css";
 
 interface User {
   recordId: string; // GUID в C# представлений як string в TypeScript
@@ -21,10 +22,10 @@ const MainPage: FC = () => {
   const [value, setValue] = useState<string>('');
   const [statusId, setStatusId] = useState<string>();
 
+  //Get запрос. Получает список пользователей которие подали заявку на доступ к боту.
   useEffect(() => {
     const getAllUsers = async () => {
       try {
-        // const result = await axios.get("http://localhost:5107/api");
         const result = await axios.get("https://ironfalcon.somee.com/api");
         setListUsers(result.data);
       }
@@ -34,12 +35,11 @@ const MainPage: FC = () => {
     }
     getAllUsers();
   }, [setListUsers])
-
+//обновляет listUsers
   useEffect(() => {
-    console.log(listUsers);
   }, [listUsers]);
 
-
+//обработчик ввода в поле "Дать доступ". Пропускает только цифри.
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setStatusId('');
@@ -56,11 +56,6 @@ const MainPage: FC = () => {
 
   const handleOnClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
-      // const response = await axios.post('http://localhost:5107/white_list/', value, {
-      //   headers: {
-      //     "Content-Type": "application/json"
-      //   }
-      // });
       const response = await axios.post('https://ironfalcon.somee.com/white_list/', value, {
         headers: {
           "Content-Type": "application/json"
@@ -74,33 +69,40 @@ const MainPage: FC = () => {
   }
 
   return (<>
-    <div className='App'>
-      <div className='Status-id'>{statusId}</div>
-      <InputGroup className="mb-3 " size="lg" >
-        <Form.Control
-          placeholder='Введите Id пользивателя'
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
-          className='bg-secondary'
-          value={value}
-          onChange={handleInputChange}
-        />
-        <Button type='button' variant='success' onClick={handleOnClickSubmit} >Дать доступ</Button>
-      </InputGroup>
-      {value && < Table striped bordered hover>
-        <tbody>
-          {listUsers?.filter(item => item.userId.toString().startsWith(value)).map((item, index) => {
-            return (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td onClick={handleOnClickTD}>{item.userId}</td>
-              </tr>)
-          })}
-        </tbody>
-      </Table>
-      }
+    <div className='provide-access-container'>
+      <div>
+        <div className='Status-id'>{statusId}</div>
+        <InputGroup className="mb-2" size="lg" >
+          <Form.Control
+            placeholder='Введите Id пользивателя'
+            aria-label="Default"
+            aria-describedby="inputGroup-sizing-default"
+            className='bg-secondary'
+            value={value}
+            onChange={handleInputChange}
+          />
+          <Button type='button' variant='success' onClick={handleOnClickSubmit} >Дать доступ</Button>
+        </InputGroup>
+      </div>
+
+      <div className='table-userid-container'>
+        {value && < Table bordered hover  >
+          <tbody >
+            {listUsers?.filter(item => item.userId.toString().startsWith(value)).map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td onClick={handleOnClickTD}>{item.userId}</td>
+                </tr>)
+            })}
+          </tbody>
+        </Table>
+        }
+      </div>
     </div>
-    <TablePage/>
+    <TablePage />
+    <div></div>
+    <div></div>
   </>
   );
 }

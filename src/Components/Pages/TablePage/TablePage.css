@@ -1,0 +1,7 @@
+.table-survey-users {
+    width: 97%;
+    margin: auto;
+    margin-top: 3em;
+    max-height: 800px;
+    overflow: auto;
+}

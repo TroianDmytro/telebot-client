@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/esm/Table';
 import { format } from 'date-fns';
 import "../../../App.css";
 import axios from 'axios';
+import "./TablePage.css";
 
 // Интерфейс для объекта Blum
 interface Blum {
@@ -73,10 +74,10 @@ interface DataObject {
 const TablePage: FC = () => {
    const [listPolling, setListPolling] = useState<DataObject[]|null>(null);
 
+   //get запрос. Получение даних для таблици
    useEffect(()=>{
       const getInfoIntoTable = async ()=>{
          try{
-            // const result = await axios.get("http://localhost:5107/api/get_all_survey_data")
             const result = await axios.get("https://ironfalcon.somee.com/api/get_all_survey_data")
             console.log(result.data);
             setListPolling(result.data);
@@ -88,11 +89,11 @@ const TablePage: FC = () => {
       } 
       getInfoIntoTable();
    },[])
-
+   //обновляет listPolling 
    useEffect(()=>{
-      console.log("listPolling reload.",listPolling);
    },[listPolling]);
 
+   //устанавливает дату ивремя в нужний формат
    function dateString(date: Date) {
       const currentDate: Date = date;
       const formattedDate: string = format(currentDate, 'dd/MM/yyyy HH:mm:ss');
@@ -100,7 +101,7 @@ const TablePage: FC = () => {
    }
 
    return (
-      <div className="Table table-responsive">
+      <div className="table-survey-users table-responsive">
          <Table striped bordered hover variant='secondary'>
             <thead style={{ textAlign: 'center' }}>
                <tr>
@@ -166,35 +167,7 @@ const TablePage: FC = () => {
          </Table>
       </div>
    );
-   // return (
-   //    <div className='App'>
-   //       <Table striped bordered hover>
-   //          <thead>
-   //             <tr>
-   //                <th>#</th>
-   //                <th>User Id</th>
-   //                <th>Telegram Name</th>
-   //                <th>First Name</th>
-   //                <th>Last Name</th>
-   //                <th>Date and time</th>
-   //             </tr>
-   //          </thead>
-   //          <tbody>
-   //             {/* {listUsers?.map((item, index) => {
-   //                return (
-   //                   <tr key={index}>
-   //                      <td>{index + 1}</td>
-   //                      <td>{item.userId}</td>
-   //                      <td>{item.telegramName}</td>
-   //                      <td>{item.firstName}</td>
-   //                      <td>{item.lastName}</td>
-   //                      <td>{dateString(item.createDate)}</td>
-   //                   </tr>)
-   //             })} */}
-   //          </tbody>
-   //       </Table>
-   //    </div>
-   // )
+
 }
 
 export default TablePage;

@@ -1,22 +1,9 @@
-.App {
-  text-align: center;
-  width: 600px;
-  margin: auto;
-  margin-top: 3em;
-  align-items: center;
-  
-}
-
 .Status-id{
   color: darkblue;
   font-size: x-large;
-  min-height: 3em;
+  min-height: 2em;
 }
-.Table{
-  width: auto;
-  margin: auto;
-  margin-top: 3em;
-}
+
 
 .App-logo {
   height: 40vmin;
