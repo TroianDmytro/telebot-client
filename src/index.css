@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(https://wiki.wargaming.net/skins/globalwiki/css/../images/bg.jpg?2024-03-27T16:00:00Z) repeat;
 }
 
 code {
