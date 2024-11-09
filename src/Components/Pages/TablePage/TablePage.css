@@ -2,6 +2,14 @@
     width: 97%;
     margin: auto;
     margin-top: 3em;
-    max-height: 800px;
+    max-height: 700px;
     overflow: auto;
+}
+
+.table-header{
+    position: sticky;
+    top: 0;
+    text-align: center;
+    /* background-color: #fff; Задайте цвет фона для заголовка */
+    z-index: 1;
 }

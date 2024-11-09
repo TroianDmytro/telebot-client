@@ -103,7 +103,7 @@ const TablePage: FC = () => {
    return (
       <div className="table-survey-users table-responsive">
          <Table striped bordered hover variant='secondary'>
-            <thead style={{ textAlign: 'center' }}>
+            <thead className='table-header'>
                <tr>
                   <th rowSpan={2}>№</th>
                   <th rowSpan={2} style={{ minWidth: "150px" }}>Id</th>
